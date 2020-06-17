@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.FinanceMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Finance">
+    <id column="FinanceId" jdbcType="INTEGER" property="financeid" />
+    <result column="OrderId" jdbcType="INTEGER" property="orderid" />
+    <result column="OrderType" jdbcType="VARCHAR" property="ordertype" />
+    <result column="FinanceDate" jdbcType="VARCHAR" property="financedate" />
+    <result column="FinancePrice" jdbcType="VARCHAR" property="financeprice" />
+    <result column="FinanceType" jdbcType="VARCHAR" property="financetype" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from finance
+    where FinanceId = #{financeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Finance">
+    insert into finance (FinanceId, OrderId, OrderType, 
+      FinanceDate, FinancePrice, FinanceType
+      )
+    values (#{financeid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{ordertype,jdbcType=VARCHAR}, 
+      #{financedate,jdbcType=VARCHAR}, #{financeprice,jdbcType=VARCHAR}, #{financetype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Finance">
+    update finance
+    set OrderId = #{orderid,jdbcType=INTEGER},
+      OrderType = #{ordertype,jdbcType=VARCHAR},
+      FinanceDate = #{financedate,jdbcType=VARCHAR},
+      FinancePrice = #{financeprice,jdbcType=VARCHAR},
+      FinanceType = #{financetype,jdbcType=VARCHAR}
+    where FinanceId = #{financeid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select FinanceId, OrderId, OrderType, FinanceDate, FinancePrice, FinanceType
+    from finance
+    where FinanceId = #{financeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select FinanceId, OrderId, OrderType, FinanceDate, FinancePrice, FinanceType
+    from finance
+  </select>
+</mapper>

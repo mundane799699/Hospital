@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.SupplierMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Supplier">
+    <id column="SupplierId" jdbcType="INTEGER" property="supplierid" />
+    <result column="SupplierName" jdbcType="VARCHAR" property="suppliername" />
+    <result column="SupplierPhone" jdbcType="VARCHAR" property="supplierphone" />
+    <result column="SupplierAddress" jdbcType="VARCHAR" property="supplieraddress" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from supplier
+    where SupplierId = #{supplierid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Supplier">
+    insert into supplier (SupplierId, SupplierName, SupplierPhone, 
+      SupplierAddress)
+    values (#{supplierid,jdbcType=INTEGER}, #{suppliername,jdbcType=VARCHAR}, #{supplierphone,jdbcType=VARCHAR}, 
+      #{supplieraddress,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Supplier">
+    update supplier
+    set SupplierName = #{suppliername,jdbcType=VARCHAR},
+      SupplierPhone = #{supplierphone,jdbcType=VARCHAR},
+      SupplierAddress = #{supplieraddress,jdbcType=VARCHAR}
+    where SupplierId = #{supplierid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select SupplierId, SupplierName, SupplierPhone, SupplierAddress
+    from supplier
+    where SupplierId = #{supplierid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select SupplierId, SupplierName, SupplierPhone, SupplierAddress
+    from supplier
+  </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.StaffMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Staff">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="StaffId" jdbcType="INTEGER" property="staffid" />
+    <result column="StaffName" jdbcType="VARCHAR" property="staffname" />
+    <result column="DId" jdbcType="INTEGER" property="did" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from staff
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Staff">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into staff (Id, StaffId, StaffName, 
+      DId)
+    values (#{id,jdbcType=INTEGER}, #{staffid,jdbcType=INTEGER}, #{staffname,jdbcType=VARCHAR}, 
+      #{did,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Staff">
+    update staff
+    set StaffId = #{staffid,jdbcType=INTEGER},
+      StaffName = #{staffname,jdbcType=VARCHAR},
+      DId = #{did,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select Id, StaffId, StaffName, DId
+    from staff
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select Id, StaffId, StaffName, DId
+    from staff
+  </select>
+</mapper>

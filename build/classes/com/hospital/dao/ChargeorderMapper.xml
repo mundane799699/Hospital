@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.ChargeorderMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Chargeorder">
+    <id column="ChargeOrderId" jdbcType="INTEGER" property="chargeorderid" />
+    <result column="ChargeSum" jdbcType="VARCHAR" property="chargesum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from chargeorder
+    where ChargeOrderId = #{chargeorderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Chargeorder">
+    insert into chargeorder (ChargeOrderId, ChargeSum)
+    values (#{chargeorderid,jdbcType=INTEGER}, #{chargesum,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Chargeorder">
+    update chargeorder
+    set ChargeSum = #{chargesum,jdbcType=VARCHAR}
+    where ChargeOrderId = #{chargeorderid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ChargeOrderId, ChargeSum
+    from chargeorder
+    where ChargeOrderId = #{chargeorderid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ChargeOrderId, ChargeSum
+    from chargeorder
+  </select>
+</mapper>

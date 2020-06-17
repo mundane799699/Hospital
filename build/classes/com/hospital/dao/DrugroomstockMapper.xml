@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.DrugroomstockMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Drugroomstock">
+    <id column="DrugRoomStockId" jdbcType="INTEGER" property="drugroomstockid" />
+    <result column="DrugRoomId" jdbcType="INTEGER" property="drugroomid" />
+    <result column="DrugId" jdbcType="INTEGER" property="drugid" />
+    <result column="DrugUnitId" jdbcType="INTEGER" property="drugunitid" />
+    <result column="DrugRoomStockNum" jdbcType="INTEGER" property="drugroomstocknum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugroomstock
+    where DrugRoomStockId = #{drugroomstockid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Drugroomstock">
+    insert into drugroomstock (DrugRoomStockId, DrugRoomId, DrugId, 
+      DrugUnitId, DrugRoomStockNum)
+    values (#{drugroomstockid,jdbcType=INTEGER}, #{drugroomid,jdbcType=INTEGER}, #{drugid,jdbcType=INTEGER}, 
+      #{drugunitid,jdbcType=INTEGER}, #{drugroomstocknum,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Drugroomstock">
+    update drugroomstock
+    set DrugRoomId = #{drugroomid,jdbcType=INTEGER},
+      DrugId = #{drugid,jdbcType=INTEGER},
+      DrugUnitId = #{drugunitid,jdbcType=INTEGER},
+      DrugRoomStockNum = #{drugroomstocknum,jdbcType=INTEGER}
+    where DrugRoomStockId = #{drugroomstockid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select DrugRoomStockId, DrugRoomId, DrugId, DrugUnitId, DrugRoomStockNum
+    from drugroomstock
+    where DrugRoomStockId = #{drugroomstockid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select DrugRoomStockId, DrugRoomId, DrugId, DrugUnitId, DrugRoomStockNum
+    from drugroomstock
+  </select>
+</mapper>

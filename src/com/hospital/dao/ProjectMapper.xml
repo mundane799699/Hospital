@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Project">
+    <id column="ProjectId" jdbcType="INTEGER" property="projectid" />
+    <result column="ProjectName" jdbcType="VARCHAR" property="projectname" />
+    <result column="ProjectPrice" jdbcType="VARCHAR" property="projectprice" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Project">
+    insert into project (ProjectId, ProjectName, ProjectPrice
+      )
+    values (#{projectid,jdbcType=INTEGER}, #{projectname,jdbcType=VARCHAR}, #{projectprice,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Project">
+    update project
+    set ProjectName = #{projectname,jdbcType=VARCHAR},
+      ProjectPrice = #{projectprice,jdbcType=VARCHAR}
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ProjectId, ProjectName, ProjectPrice
+    from project
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ProjectId, ProjectName, ProjectPrice
+    from project
+  </select>
+</mapper>

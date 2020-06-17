@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.ChargeprojectMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Chargeproject">
+    <id column="ChargeProjectId" jdbcType="INTEGER" property="chargeprojectid" />
+    <result column="ChargeOrderId" jdbcType="INTEGER" property="chargeorderid" />
+    <result column="ProjectId" jdbcType="INTEGER" property="projectid" />
+    <result column="Doctor" jdbcType="VARCHAR" property="doctor" />
+    <result column="POrderStatus" jdbcType="VARCHAR" property="porderstatus" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from chargeproject
+    where ChargeProjectId = #{chargeprojectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Chargeproject">
+    insert into chargeproject (ChargeProjectId, ChargeOrderId, ProjectId, 
+      Doctor, POrderStatus)
+    values (#{chargeprojectid,jdbcType=INTEGER}, #{chargeorderid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, 
+      #{doctor,jdbcType=VARCHAR}, #{porderstatus,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Chargeproject">
+    update chargeproject
+    set ChargeOrderId = #{chargeorderid,jdbcType=INTEGER},
+      ProjectId = #{projectid,jdbcType=INTEGER},
+      Doctor = #{doctor,jdbcType=VARCHAR},
+      POrderStatus = #{porderstatus,jdbcType=VARCHAR}
+    where ChargeProjectId = #{chargeprojectid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ChargeProjectId, ChargeOrderId, ProjectId, Doctor, POrderStatus
+    from chargeproject
+    where ChargeProjectId = #{chargeprojectid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ChargeProjectId, ChargeOrderId, ProjectId, Doctor, POrderStatus
+    from chargeproject
+  </select>
+</mapper>

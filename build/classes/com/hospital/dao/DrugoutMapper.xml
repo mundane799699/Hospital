@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.DrugoutMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Drugout">
+    <id column="DrugOutId" jdbcType="INTEGER" property="drugoutid" />
+    <result column="DrugRoomId" jdbcType="INTEGER" property="drugroomid" />
+    <result column="DrugId" jdbcType="INTEGER" property="drugid" />
+    <result column="DrugUnitId" jdbcType="INTEGER" property="drugunitid" />
+    <result column="DrugOutNum" jdbcType="INTEGER" property="drugoutnum" />
+    <result column="DrugOutUserName" jdbcType="VARCHAR" property="drugoutusername" />
+    <result column="DrugOutDate" jdbcType="VARCHAR" property="drugoutdate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugout
+    where DrugOutId = #{drugoutid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Drugout">
+    insert into drugout (DrugOutId, DrugRoomId, DrugId, 
+      DrugUnitId, DrugOutNum, DrugOutUserName, 
+      DrugOutDate)
+    values (#{drugoutid,jdbcType=INTEGER}, #{drugroomid,jdbcType=INTEGER}, #{drugid,jdbcType=INTEGER}, 
+      #{drugunitid,jdbcType=INTEGER}, #{drugoutnum,jdbcType=INTEGER}, #{drugoutusername,jdbcType=VARCHAR}, 
+      #{drugoutdate,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Drugout">
+    update drugout
+    set DrugRoomId = #{drugroomid,jdbcType=INTEGER},
+      DrugId = #{drugid,jdbcType=INTEGER},
+      DrugUnitId = #{drugunitid,jdbcType=INTEGER},
+      DrugOutNum = #{drugoutnum,jdbcType=INTEGER},
+      DrugOutUserName = #{drugoutusername,jdbcType=VARCHAR},
+      DrugOutDate = #{drugoutdate,jdbcType=VARCHAR}
+    where DrugOutId = #{drugoutid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select DrugOutId, DrugRoomId, DrugId, DrugUnitId, DrugOutNum, DrugOutUserName, DrugOutDate
+    from drugout
+    where DrugOutId = #{drugoutid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select DrugOutId, DrugRoomId, DrugId, DrugUnitId, DrugOutNum, DrugOutUserName, DrugOutDate
+    from drugout
+  </select>
+</mapper>

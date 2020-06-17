@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.DrugroomMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Drugroom">
+    <id column="DrugRoomId" jdbcType="INTEGER" property="drugroomid" />
+    <result column="DrugRoomName" jdbcType="VARCHAR" property="drugroomname" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugroom
+    where DrugRoomId = #{drugroomid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Drugroom">
+    insert into drugroom (DrugRoomId, DrugRoomName)
+    values (#{drugroomid,jdbcType=INTEGER}, #{drugroomname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Drugroom">
+    update drugroom
+    set DrugRoomName = #{drugroomname,jdbcType=VARCHAR}
+    where DrugRoomId = #{drugroomid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select DrugRoomId, DrugRoomName
+    from drugroom
+    where DrugRoomId = #{drugroomid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select DrugRoomId, DrugRoomName
+    from drugroom
+  </select>
+</mapper>

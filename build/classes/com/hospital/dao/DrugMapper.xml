@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.DrugMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Drug">
+    <id column="DrugId" jdbcType="INTEGER" property="drugid" />
+    <result column="DrugName" jdbcType="VARCHAR" property="drugname" />
+    <result column="DrugTypeId" jdbcType="INTEGER" property="drugtypeid" />
+    <result column="DrugUnitId" jdbcType="INTEGER" property="drugunitid" />
+    <result column="DrugPrice" jdbcType="VARCHAR" property="drugprice" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drug
+    where DrugId = #{drugid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Drug">
+    insert into drug (DrugId, DrugName, DrugTypeId, 
+      DrugUnitId, DrugPrice)
+    values (#{drugid,jdbcType=INTEGER}, #{drugname,jdbcType=VARCHAR}, #{drugtypeid,jdbcType=INTEGER}, 
+      #{drugunitid,jdbcType=INTEGER}, #{drugprice,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Drug">
+    update drug
+    set DrugName = #{drugname,jdbcType=VARCHAR},
+      DrugTypeId = #{drugtypeid,jdbcType=INTEGER},
+      DrugUnitId = #{drugunitid,jdbcType=INTEGER},
+      DrugPrice = #{drugprice,jdbcType=VARCHAR}
+    where DrugId = #{drugid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select DrugId, DrugName, DrugTypeId, DrugUnitId, DrugPrice
+    from drug
+    where DrugId = #{drugid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select DrugId, DrugName, DrugTypeId, DrugUnitId, DrugPrice
+    from drug
+  </select>
+</mapper>

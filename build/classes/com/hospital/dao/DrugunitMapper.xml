@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.DrugunitMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Drugunit">
+    <id column="DrugUnitId" jdbcType="INTEGER" property="drugunitid" />
+    <result column="DrugUnitName" jdbcType="VARCHAR" property="drugunitname" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugunit
+    where DrugUnitId = #{drugunitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Drugunit">
+    insert into drugunit (DrugUnitId, DrugUnitName)
+    values (#{drugunitid,jdbcType=INTEGER}, #{drugunitname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Drugunit">
+    update drugunit
+    set DrugUnitName = #{drugunitname,jdbcType=VARCHAR}
+    where DrugUnitId = #{drugunitid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select DrugUnitId, DrugUnitName
+    from drugunit
+    where DrugUnitId = #{drugunitid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select DrugUnitId, DrugUnitName
+    from drugunit
+  </select>
+</mapper>

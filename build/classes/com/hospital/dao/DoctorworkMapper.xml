@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hospital.dao.DoctorworkMapper">
+  <resultMap id="BaseResultMap" type="com.hospital.pojo.Doctorwork">
+    <id column="DoctorWorkId" jdbcType="INTEGER" property="doctorworkid" />
+    <result column="DoctorId" jdbcType="INTEGER" property="doctorid" />
+    <result column="DoctorName" jdbcType="VARCHAR" property="doctorname" />
+    <result column="BillType" jdbcType="VARCHAR" property="billtype" />
+    <result column="DrugId" jdbcType="INTEGER" property="drugid" />
+    <result column="ProjectId" jdbcType="INTEGER" property="projectid" />
+    <result column="BillDrugNum" jdbcType="INTEGER" property="billdrugnum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctorwork
+    where DoctorWorkId = #{doctorworkid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hospital.pojo.Doctorwork">
+    insert into doctorwork (DoctorWorkId, DoctorId, DoctorName, 
+      BillType, DrugId, ProjectId, 
+      BillDrugNum)
+    values (#{doctorworkid,jdbcType=INTEGER}, #{doctorid,jdbcType=INTEGER}, #{doctorname,jdbcType=VARCHAR}, 
+      #{billtype,jdbcType=VARCHAR}, #{drugid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, 
+      #{billdrugnum,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hospital.pojo.Doctorwork">
+    update doctorwork
+    set DoctorId = #{doctorid,jdbcType=INTEGER},
+      DoctorName = #{doctorname,jdbcType=VARCHAR},
+      BillType = #{billtype,jdbcType=VARCHAR},
+      DrugId = #{drugid,jdbcType=INTEGER},
+      ProjectId = #{projectid,jdbcType=INTEGER},
+      BillDrugNum = #{billdrugnum,jdbcType=INTEGER}
+    where DoctorWorkId = #{doctorworkid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select DoctorWorkId, DoctorId, DoctorName, BillType, DrugId, ProjectId, BillDrugNum
+    from doctorwork
+    where DoctorWorkId = #{doctorworkid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select DoctorWorkId, DoctorId, DoctorName, BillType, DrugId, ProjectId, BillDrugNum
+    from doctorwork
+  </select>
+</mapper>
