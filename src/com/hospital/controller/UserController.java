@@ -26,13 +26,13 @@ public class UserController {
 			model.addAttribute("errMsg", "对不起，登录名或密码错误，请重试");
 			//返回登录页面
 			session.invalidate();
-			return "sign-in";
+			return "forward:/sign-in.jsp";
 		}else {//验证成功
 			//登录用户信息保存在Session
 			session.setAttribute("session_user", user1);
 			session.setAttribute("supername", user1.getUsername());
 			//进入系统首页
-			return "index";
+			return "redirect:/index.jsp";
 		}
 	}
 	
